@@ -1,0 +1,74 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main() {
+    char names[5][20];
+    int marks[5][3];
+    int total[5];
+    float avg[5];
+
+    // Read names first
+    for (int i = 0; i < 5; i++) {
+        cout << "Enter student name " << i + 1 << ": ";
+        cin.getline(names[i], 20);
+    }
+
+    // Read marks and calculate total and average
+    for (int i = 0; i < 5; i++) {
+        total[i] = 0;
+
+        cout << "\nEnter marks for " << names[i] << endl;
+
+        for (int j = 0; j < 3; j++) {
+            cout << "Mark " << j + 1 << ": ";
+            cin >> marks[i][j];
+
+            total[i] += marks[i][j];
+        }
+
+        avg[i] = total[i] / 3.0;
+    }
+
+    // Find the top student
+    int top = 0;
+    for (int i = 1; i < 5; i++) {
+        if (total[i] > total[top]) {
+            top = i;
+        } 
+    }
+
+    // Print the table
+    cout << "\n";
+    cout << left
+         << setw(20) << "Name"
+         << setw(8) << "M1"
+         << setw(8) << "M2"
+         << setw(8) << "M3"
+         << setw(10) << "Total"
+         << "Average" << endl;
+
+    for (int i = 0; i < 5; i++) {
+        cout << left
+             << setw(20) << names[i]
+             << setw(8) << marks[i][0]
+             << setw(8) << marks[i][1]
+             << setw(8) << marks[i][2]
+             << setw(10) << total[i]
+             << fixed << setprecision(1) << avg[i] << endl;
+ }  
+   cout << "\nTop student(s):" << endl;
+for (int i = 0; i < 5; i++)
+{
+    if (total[i] == total[top])
+    {
+        cout << "Name: " << names[i] << endl;
+    }   else
+    if(total[i]>total[top]) {
+    
+ cout<<"Name:"<<names[top]<<endl; 
+ } 
+}
+    return 0;
+}
+
+
